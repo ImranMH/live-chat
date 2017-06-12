@@ -22,7 +22,7 @@ app.use('/assets', express.static('assets'))
 
 io.on('connection', function(socket){
 	socket.on('chat_message', function(msg){
-		console.log('message:' +msg);
+		console.log('message:' +msg.user);
 		io.emit('chat_message', msg);
 	})
 	//io.emit('chat_message', { for: 'everyone' });
