@@ -2,40 +2,64 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>socket io chat app</title>
-	 <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-    </style>
+	<title>Live Chat</title>
+
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+	 <link rel="stylesheet" type="text/css" href="assets/main.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-		<script>
-		  var socket = io();
-		  io.emit('some event', { for: 'everyone' });
-		  $('form').submit(function(){
-		  	alert('works');
-		  	socket.emit('chat message', $('#m').val());
-		  	$('#m').val(' ');
-		  	return false;
-		  });
-		  socket.on('chat messege', function(msg){
-		  	$('#messeges').append($('<li>').text(msg));
-		  });
-		</script>
+		<script src="assets/script.js"> </script>
+
 </head>
 <body>
-	<h1>Hello from socket io app</h1>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Live Chat Application</a>
+			</div>
+	
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Live Chat</a></li>
+					<li><a href="#">Private Chat</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Hello User</a></li>
+					
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
 
-	<ul id="masseges"></ul>
-	<form action="">
-      <input id="m" autocomplete="off" />
-      <button>Send</button>
-   </form>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+					<h1>Hello from socket io app</h1>
+			</div>
+			<div class="col-md-7">
+				<div class="chatarea">
+					<h2 class="chatbox-heading">Chat Room</h2>
+					<div class="chatBoard">
+						<ul id="messages">
+						</ul>
+					</div>
+					<form action="">
+			      <input id="m" autocomplete="off" />
+			      <button>Send</button>
+			   </form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
