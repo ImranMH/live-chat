@@ -50,12 +50,17 @@ $(function(){
 			  	})
 			  	//var newUser = +' '+ res.text;
 			  	//console.log(newUser);
+			  	var dt = new Date();
+			  	var hour = dt.getHours() < 10 ? '0'+dt.getHours() : dt.getHours()
+			  	var minute = dt.getMinutes() < 10 ? '0'+dt.getMinutes() : dt.getMinutes()
+			  	var second = dt.getSeconds() < 10 ? '0'+dt.getSeconds() : dt.getSeconds()
+					//var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+					var time = hour + ":" + minute + ":" + second;
 			  	var activeUserLength = uniqueUsers.length
 			  	$('.list').children().remove()
-			  	$('.flashuser').empty()
 			  	$('.online').text(activeUserLength)
 			  	//$('.flashuser').text(newUser)
-			  	$('.log').append($('<li>').html('<span class="user">'+ res.user +'</span> : '+ res.text));
+			  	$('.log').append($('<li>').html('<span class="time">'+ time +'</span> : <span class="user">'+ res.user +'</span> : '+ res.text));
 			  	uniqueUsers.map(user => {
 			  		if(user){
 			  			$('.list').append($('<li>').text(user));
@@ -92,8 +97,13 @@ $(function(){
 
 				 	// receive message from server	
 			  	socket.on('chat_message', function(msg){
-
-			  	$('#messages').append($('<li>').html('<span class="userMsg">'+ msg.user+'</span> : '+ msg.msg));
+			  	var dt = new Date();
+			  	var hour = dt.getHours() < 10 ? '0'+dt.getHours() : dt.getHours()
+			  	var minute = dt.getMinutes() < 10 ? '0'+dt.getMinutes() : dt.getMinutes()
+			  	var second = dt.getSeconds() < 10 ? '0'+dt.getSeconds() : dt.getSeconds()
+			
+					var time = hour + ":" + minute + ":" + second;
+			  	$('#messages').append($('<li>').html('<span class="time">'+ time +'</span>:  <span class="userMsg">'+ msg.user+'</span> : '+ msg.msg));
 			  	$('p.chat_write').html('')
 			  	window.scrollTo(0, document.body.scrollHeight);
 			  });
