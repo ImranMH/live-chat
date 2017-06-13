@@ -40,19 +40,22 @@ $(function(){
 				
 			  socket.emit('show_name',name );
 				var $messageEl = $('#m');
-			  socket.on('show_name', function showUser(users){
-			  	// console.log("shoow name"+user);
-			  	// users.push(user);
-		  	
-			  	$.each(users, function(i, el){
+			  socket.on('show_name', function showUser(res){
+			  	// users.push(users);
+		  		
+			  	$.each(res.users, function(i, el){
 			  		if($.inArray(el,uniqueUsers)=== -1){
 			  			uniqueUsers.push(el)
 			  		}
 			  	})
+			  	//var newUser = +' '+ res.text;
+			  	//console.log(newUser);
 			  	var activeUserLength = uniqueUsers.length
 			  	$('.list').children().remove()
+			  	$('.flashuser').empty()
 			  	$('.online').text(activeUserLength)
-
+			  	//$('.flashuser').text(newUser)
+			  	$('.log').append($('<li>').html('<span class="user">'+ res.user +'</span> : '+ res.text));
 			  	uniqueUsers.map(user => {
 			  		if(user){
 			  			$('.list').append($('<li>').text(user));
@@ -78,7 +81,7 @@ $(function(){
 						
 						var message = $messageEl.val()
 						if(message) {
-							console.log(message);
+							
 					  	socket.emit('chat_message',{user: name, msg: message} );
 					  	$messageEl.val('');
 					  	$messageEl.attr('placeholder', "Enter Message");
@@ -100,8 +103,13 @@ $(function(){
 			  socket.on('disconnect', function(msg){
 			  	var status = 'you are now disconnected from chat server..';
 			  	$('.disconnectmsg').text(msg)
+			  	//console.log(msg);
+			  })
+			  socket.on('broadcast', function(msg){
+			  	
 			  	console.log(msg);
 			  })
+
 			  socket.on('connection', function(msg){
 			  	$('.messageFromServer').text(msg.text)
 			  	//showUser()

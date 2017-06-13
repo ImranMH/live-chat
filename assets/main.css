@@ -22,7 +22,7 @@ form button { width: 11%;
 	padding: 4px;
 }
 .chatbox-heading{
-	    font-size: 20px;
+	  font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     margin-top: -10px;
@@ -39,7 +39,6 @@ form button { width: 11%;
 .uselist{
 	background: #ccc;
 	padding: 10px;
-	width: 50%;
 	text-transform: uppercase;	
 }
 .uselist h3{
@@ -85,4 +84,30 @@ form button { width: 11%;
 	position: relative;
 	bottom:20px;
 	left: 10px;
+}
+.flashuser{
+  background: rgba(255,255,255,.3);
+  color: #fff;
+  width: 200px;
+  height: 30px;
+  font-size: 18px;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  margin-top: 10px;
+}
+.chatlog{
+	background: #ccc;
+  border: 1px solid #ccc;
+  height: 473px;
+}
+.chatlog h3{
+	text-align: center;
+    margin-top: 0px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    background: #555;
+    padding: 10px 0 5px;
 }
