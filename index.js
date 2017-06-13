@@ -19,19 +19,25 @@ app.use('/assets', express.static('assets'))
 	// 	console.log("a user is disconnected");
 	// })
 })*/
-
+var names = [];
 io.on('connection', function(socket){
 	socket.on('chat_message', function(msg){
-		console.log('message:' +msg.user);
 		io.emit('chat_message', msg);
 	})
-	//io.emit('chat_message', { for: 'everyone' });
 	
+	socket.emit('connection', { for: 'everyone' });
 	socket.broadcast.emit('hi');
 	console.log('a user connected');
 
 	socket.on('disconnect', function(msg){
 		console.log('disconnected ' + msg);
+		io.emit('disconnect', msg);
+		io.emit('show_name', names);
+	})
+	
+	socket.on('show_name', function(name){		
+		names.push(name)
+		io.emit('show_name', names);
 	})
 });
 http.listen(3000, function() {

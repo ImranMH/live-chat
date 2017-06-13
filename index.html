@@ -7,8 +7,10 @@
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
 	 <link rel="stylesheet" type="text/css" href="assets/main.css">
     <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+   <!--  <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
+   <script src="assets/jquery.min.js"> </script>
 		<script src="assets/script.js"> </script>
+		
 
 </head>
 <body>
@@ -45,11 +47,12 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="uselist">
-						<h3>Who Is Online!</h3>
+						<h3><span class="online"></span> Online!</h3>
 						<ul class="list">
 							
 						</ul>
-					</div>
+				</div>
+				<div class="userAdd">
 					<div class="newUser">
 						<h2>Please Insert a name for Enter Chat</h2>
 							<input id="name" type="text" name="" placeholder="Your Chat name">
@@ -58,7 +61,7 @@
 					<div class="oldUser">
 						Welcome <span class='user'></span> 
 					</div>
-					
+				</div>	
 			</div>
 			<div class="col-md-7">
 				<div class="chatarea">
