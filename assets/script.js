@@ -3,6 +3,8 @@
 $(function(){
 
 	 	var name = localStorage.getItem('name');
+	 
+
 	 /* set wel come message and user................................*/
 		if (!name) {
 			$('.oldUser').hide()
@@ -29,14 +31,15 @@ $(function(){
 				location.reload()
 			})
 		
-			var socket = io();			
-
+						
+				var socket = io();
 				/* show online list..................................*/
 			 	var uniqueUsers =[];
 			 	
-			  if(name) {
-			  	socket.emit('show_name',name );
-			  }	
+		if(name) {
+				
+			  socket.emit('show_name',name );
+				var $messageEl = $('#m');
 			  socket.on('show_name', function showUser(users){
 			  	// console.log("shoow name"+user);
 			  	// users.push(user);
@@ -56,57 +59,55 @@ $(function(){
 			  		} 		  		
 			  	})
 			  })
-		  /* end of show online list..................................*/
+			  /* end of show online list..................................*/
 
-		   /*  message functionalities.............................................*/
-		   // send message to server
-		  	$('form').submit(function(){
-					var $messageEl = $('#m');
-					var message =$messageEl.val()
-					if(message) {
-				  	socket.emit('chat_message',{user: name, msg: message} );
-				  	$messageEl.val('');
-				  	$messageEl.attr('placeholder', "Enter Message");
-				  	return false;
-			  	}
+			  /*  key stock functionalities.............................................*/
+			  	$messageEl.on('keypress', function() {
+			  		socket.emit('write_message',{user: name, msg: "writting now ...."} );
+			  	})
+			  	 socket.on('write_message', function(msg){
+			  	 	var showMsg = msg.user+':'+msg.msg;
+			  	 	if (msg.user !== name) {
+			  	 		$('p.chat_write').html(showMsg)
+			  	 	}
+				  })
+
+			   /*  message functionalities.............................................*/
+			   // send message to server
+			  	$('form').submit(function(){
+						
+						var message = $messageEl.val()
+						if(message) {
+							console.log(message);
+					  	socket.emit('chat_message',{user: name, msg: message} );
+					  	$messageEl.val('');
+					  	$messageEl.attr('placeholder', "Enter Message");
+					  	
+					  	return false;
+				  	}
+				  });
+
+				 	// receive message from server	
+			  	socket.on('chat_message', function(msg){
+
+			  	$('#messages').append($('<li>').html('<span class="userMsg">'+ msg.user+'</span> : '+ msg.msg));
+			  	$('p.chat_write').html('')
+			  	window.scrollTo(0, document.body.scrollHeight);
 			  });
-
-			 	// receive message from server	
-		  	socket.on('chat_message', function(msg){
-
-		  	$('#messages').append($('<li>').html('<span class="userMsg">'+ msg.user+'</span> : '+ msg.msg));
-		  	
-		  	/*users.push(msg.user);
-		  	
-		  	$.each(users, function(i, el){
-		  		if($.inArray(el,uniqueUsers)=== -1){
-		  			uniqueUsers.push(el)
-		  		}
-		  	})
-
-		  	$('.list').children().remove()
-		  	uniqueUsers.map(user => {
-		  		if(user){
-		  			$('.list').append($('<li>').text(user));
-		  		} else {
-		  			$('.list').append($('<p>').text("No Active User"));
-		  		}
-		  		
-		  	})	*/
-
-		  	window.scrollTo(0, document.body.scrollHeight);
-		  });
-		   /* end of  message.............................................*/	
+			   /* end of  message.............................................*/	
 
 
-		  socket.on('disconnect', function(msg){
-		  	console.log('discommttt'+msg);
-		  	//showUser()
-		  })
-		  socket.on('connection', function(msg){
-		  	console.log(msg);
-		  	//showUser()
-		  })	
+			  socket.on('disconnect', function(msg){
+			  	var status = 'you are now disconnected from chat server..';
+			  	$('.disconnectmsg').text(msg)
+			  	console.log(msg);
+			  })
+			  socket.on('connection', function(msg){
+			  	$('.messageFromServer').text(msg.text)
+			  	//showUser()
+			  })
+		 }	
+
 		})
 
 // function nnnddd() {

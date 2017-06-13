@@ -20,24 +20,31 @@ app.use('/assets', express.static('assets'))
 	// })
 })*/
 var names = [];
+var people = 0
 io.on('connection', function(socket){
+	/* complited*/
 	socket.on('chat_message', function(msg){
 		io.emit('chat_message', msg);
 	})
-	
-	socket.emit('connection', { for: 'everyone' });
+	people++
+	socket.emit('connection', { text: 'you are now connected to chat server..' });
+	//socket.broadcast.emit('connection', { text: 'user are now connected to chat server..' });
+	//socket.emit('disconnect', { text: 'you are now disconnected from chat server..' });
 	socket.broadcast.emit('hi');
 	console.log('a user connected');
 
 	socket.on('disconnect', function(msg){
 		console.log('disconnected ' + msg);
 		io.emit('disconnect', msg);
-		io.emit('show_name', names);
+		//io.emit('show_name', names);
 	})
-	
+	/* complited*/
 	socket.on('show_name', function(name){		
 		names.push(name)
 		io.emit('show_name', names);
+	})
+	socket.on('write_message', function(write){	
+		io.emit('write_message', write);
 	})
 });
 http.listen(3000, function() {
