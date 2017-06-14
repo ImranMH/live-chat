@@ -1,39 +1,40 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font: 13px Helvetica, Arial; }
-form {  padding: 3px; position: absolute; bottom: 0; width: 100%; margin-right: 10px; border: 2px solid #777;}
-form input { border: 0; padding: 10px; width:88%}
 li{
 	list-style: none;
 }
-form button { width: 11%;
+form {position: initial;}
+form input {  padding: 10px; width:100% }
+form button { 
     background: rgb(18, 18, 19);
-    border: none;
     padding: 10px;
-    box-sizing: border-box;
-    color: #fff; }
+    color: #fff; 
+    width:100%
+}
+form button:hover, button:focus{
+  background: rgb(28, 28, 19);
+}
 .chatarea{
 	width: 100%;
 	position: relative;
-	height: 485px;
+	
 }
 .chatBoard{
 	width: 100%;
 	background:#000;
 	padding: 4px;
+  height: 470px;
 }
 .chatbox-heading{
-	  font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
     margin-top: -10px;
     margin-bottom: 10px;
-    text-align: center;
 }
 .user{
 	text-transform: uppercase;
 }
-#messages { list-style-type: none; margin: 0; padding: 0; height:400px; overflow-y: scroll; overflow-x:hidden; word-wrap:normal; }
-#messages li { padding: 5px 10px; color: #ccc; }
+#messages { list-style-type: none; margin: 0;
+ padding: 0;height: 465px; overflow-y: scroll; overflow-x:hidden; word-wrap:normal; }
+#messages li { padding: 2px 3px; }
 #messages li:nth-child(odd) { color: #fff; }
 
 .uselist{
@@ -48,7 +49,7 @@ form button { width: 11%;
 }
 .userMsg{
 	font-weight: 700;
-	font-size: 18px;
+	font-size: 14px;
 	color: green;
 	text-transform: capitalize;
 }
@@ -79,11 +80,18 @@ form button { width: 11%;
 }
 .userAdd{
 	margin-top: 30px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #cfc;
+  min-height: 217px;
 }
 .chat_write{
 	position: relative;
-	bottom:20px;
-	left: 10px;
+  bottom: 20px;
+  /* left: 10px; */
+  background: rgba(255,255,255,.2);
+  color: #fff;
+  padding: 0px 20px;
 }
 .flashuser{
   background: rgba(255,255,255,.3);
@@ -99,20 +107,13 @@ form button { width: 11%;
 .chatlog{
 	background: #ccc;
   border: 1px solid #ccc;
-  height: 473px;
+  
 }
 .chatlog h3{
-	text-align: center;
-    margin-top: 0px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 18px;
-    background: #555;
-    padding: 10px 0 5px;
+    margin-top: 0px;    
 }
 .log{
-	font-size: 11px;
+	font-size: 13px;
 }
 .log li{
   margin-bottom:5px;
@@ -125,9 +126,66 @@ form button { width: 11%;
 	background: #000;
   color: #FFF;
   padding: 2px 1px;
+  margin-left: 5px;
 }
 #messages .time{
   background: #fff;
   color: #000;
-  padding: 5px 4px;
+  padding: 2px 2px;
+  font-size: 10px;
+}
+.chatarea, .chatlog{
+    margin-top: 50px;
+  }
+
+
+  /* media query css for mobile and desktop  */
+@media (min-width:768px) {
+   .chatlog{
+    margin-top: 0px;
+    height: 515px;
+  }
+  .chatarea{
+    margin-top: 10px;
+  }
+  form { 
+    padding: 1px;
+    position: absolute;
+    bottom: -42px;
+    width: 100%;
+    border: 1px solid #777;
+    /* margin-top: 15px; */
+    box-shadow: 0px -1px 5px #000 inset
+    }
+  form input { border: 0; padding: 10px; width:85%}
+  form button { width: 13%;
+      background: rgb(18, 18, 19);
+      border: none;
+      padding: 10px 5px;
+      box-sizing: border-box;
+      color: #fff;
+      text-transform: uppercase; 
+  }
+}
+.chat-title{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  background: #555;
+  padding: 10px 0 5px;
+  text-align: center;
+}
+@media (min-width:450px) {
+
+  #messages .time{
+    background: #fff;
+    color: #000;
+    padding: 5px 4px;
+  }
+  #messages li { padding: 5px 10px; color: #ccc; }
+  .userMsg{
+    font-size: 16px;
+  }
+
 }

@@ -104,7 +104,7 @@ $(function(){
 			
 					var time = hour + ":" + minute + ":" + second;
 			  	$('#messages').append($('<li>').html('<span class="time">'+ time +'</span>:  <span class="userMsg">'+ msg.user+'</span> : '+ msg.msg));
-			  	$('p.chat_write').html('')
+			  	$('p.chat_write').html('');
 			  	window.scrollTo(0, document.body.scrollHeight);
 			  });
 			   /* end of  message.............................................*/	
