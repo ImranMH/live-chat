@@ -83,7 +83,7 @@ form button:hover, button:focus{
 	margin-top: 30px;
   border: 1px solid #ccc;
   padding: 10px;
-  background: #cfc;
+  background: #ccc;
   min-height: 217px;
 }
 .chat_write{
@@ -138,12 +138,52 @@ form button:hover, button:focus{
 .chatarea, .chatlog{
     margin-top: 50px;
   }
-
-#messages li:nth-child(odd) .userMsg {
+.oldUser h3{
+  margin-top: 0;
+}
+.oldUser .timeMsg{
+  background: #008000;
+  padding: 10px 10px 5px;
+  color: #e8e3e3;
+}
+.oldUser .time{
+  width: 130px;
+  height: 50px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  line-height: 47px;
+  font-size: 24px;
+  border-radius: 5px;
+  margin: 10px auto;
+  text-shadow: 2px 1px 3px #ccc;
+}
+/* #messages li:nth-child(odd) .userMsg {
   color: red;
+} */
+
+.messageFromServer{
+  background: green;
+  padding: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 18px;
+  font-size: 1em;
+}
+.welcomeUser{
+  margin: 15px 0px;
 }
 
-
+.welcomeUser .user{
+  text-transform: uppercase;
+  background: #130101;
+  padding: 5px 10px;
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  width: 90%;
+  margin: 8px auto 5px;
+}
 
   /* media query css for mobile and desktop  */
 
