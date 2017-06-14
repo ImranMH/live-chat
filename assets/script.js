@@ -9,16 +9,19 @@ $(function(){
 		if (!name) {
 			$('.oldUser').hide()
 			$('.log_out').hide()
+			$('.uselist').hide()
 			$('#addName').on('click', function() {
 				var name = $('#name').val()
 				localStorage.setItem('name', name);
 				$('.newUser').hide();
-				$('.oldUser').show()
+				$('.oldUser').show();
+				$('.uselist').show();
 				location.reload()
 			})
 		} else {
 			$('.newUser').hide();
 			$('.oldUser').show()
+			$('.uselist').show()
 		}
 		/* end of set wel come message and user................................*/
 
@@ -28,6 +31,7 @@ $(function(){
 			$('.log_out').on('click', function() {
 				localStorage.setItem('name', "");
 				name = null;
+				$('.oldUser').hide()
 				location.reload()
 			})
 		

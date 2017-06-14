@@ -170,6 +170,18 @@ form button:hover, button:focus{
   line-height: 18px;
   font-size: 1em;
 }
+.newUser h2{
+  font-size: 22px;
+  color: #fff;
+  background: #555555;
+  padding: 10px;
+  margin: 10px 0 20px;
+  line-height: 29px;
+}
+.noConncet{
+  background: red;
+  margin-top: 20px;
+}
 .welcomeUser{
   margin: 15px 0px;
 }
