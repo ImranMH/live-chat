@@ -33,7 +33,8 @@ form button:hover, button:focus{
 	text-transform: uppercase;
 }
 #messages { list-style-type: none; margin: 0;
- padding: 0;height: 465px; overflow-y: scroll; overflow-x:hidden; word-wrap:normal; }
+ padding: 0;height: 465px; overflow-y: auto; 
+ overflow-x:hidden; word-wrap:normal; }
 #messages li { padding: 2px 3px; }
 #messages li:nth-child(odd) { color: #fff; }
 
@@ -107,7 +108,7 @@ form button:hover, button:focus{
 .chatlog{
 	background: #ccc;
   border: 1px solid #ccc;
-  
+  overflow-y: auto;
 }
 .chatlog h3{
     margin-top: 0px;    
@@ -138,8 +139,15 @@ form button:hover, button:focus{
     margin-top: 50px;
   }
 
+#messages li:nth-child(odd) .userMsg {
+  color: red;
+}
+
+
 
   /* media query css for mobile and desktop  */
+
+
 @media (min-width:768px) {
    .chatlog{
     margin-top: 0px;

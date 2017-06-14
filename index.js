@@ -29,8 +29,8 @@ io.on('connection', function(socket){
 		io.emit('chat_message', msg);
 	})
 
-	
-	socket.emit('connection', { text: 'you are now connected to chat server..' });
+	let loginTime = Date.now()
+	socket.emit('connection', { text: 'you are now connected to chat server..', loginTime: loginTime});
 	//socket.broadcast.emit('connection', { text: 'user are now connected to chat server..' });
 	//socket.emit('disconnect', { text: 'you are now disconnected from chat server..' });
 	//io.sockets.emit('broadcast',{ user: names + ' clients connected!'});

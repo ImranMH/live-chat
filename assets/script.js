@@ -37,12 +37,10 @@ $(function(){
 			 	var uniqueUsers =[];
 			 	
 		if(name) {
-				
 			  socket.emit('show_name',name );
 				var $messageEl = $('#m');
 			  socket.on('show_name', function showUser(res){
 			  	// users.push(users);
-		  		
 			  	$.each(res.users, function(i, el){
 			  		if($.inArray(el,uniqueUsers)=== -1){
 			  			uniqueUsers.push(el)
@@ -56,6 +54,7 @@ $(function(){
 			  	var second = dt.getSeconds() < 10 ? '0'+dt.getSeconds() : dt.getSeconds()
 					//var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 					var time = hour + ":" + minute + ":" + second;
+					
 			  	var activeUserLength = uniqueUsers.length
 			  	$('.list').children().remove()
 			  	$('.online').text(activeUserLength)
@@ -122,6 +121,41 @@ $(function(){
 
 			  socket.on('connection', function(msg){
 			  	$('.messageFromServer').text(msg.text)
+
+			  	var loginTime = msg.loginTime;
+					var totalTime = Date.now()-loginTime;
+					var totalSecond= totalTime/ 1000;
+			  	function getQtime (  display){
+						var minutes,seconds, hours;
+						
+						
+						 hours = parseInt(totalSecond /60/60 );
+						 minutes = parseInt(totalSecond /60, 10);
+						 seconds =  parseInt(totalSecond % 60, 10);
+
+							minutes = minutes < 10 ? "0"+minutes : minutes;
+							seconds = seconds < 10 ? "0"+seconds : seconds;
+							display.html(hours+' : '+minutes +" : "+seconds)
+							totalSecond++
+							}
+						//var totalTimes = totalQues*60;
+						
+						var loaction = $('.time')
+						getQtime(loaction)
+
+						setInterval(function(){
+							getQtime(loaction)
+						},1000)
+
+			  	console.log(msg);
+			  // 	function showChatTime() {
+					// 	var currentTime = + new Date();
+					// 	timeD = currentTime-msg.loginTime
+					// 	//console.log(timeD);
+					// 	var second = timeD % 60;
+					// 	console.log(second);
+					// }
+					// setInterval( showChatTime ,1000)
 			  	//showUser()
 			  })
 		 }	
